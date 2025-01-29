@@ -1,0 +1,17 @@
+/**
+ * Theme Name:        User Management System
+ * Theme URI:         https://example.com/user-management
+ * Description:       A custom WordPress theme designed for handling user registration, roles, and authentication.
+ *                    This theme provides a structured interface for managing users and their access levels.
+ * Version:           1.0.0
+ * Author:            Luis Diego M
+ * Author URI:        https://example.com
+ * Tags:              user-management, authentication, roles, access-control
+ * Requires at least: 6.2
+ * Requires PHP:      7.4
+ * License:           GNU General Public License v2.0 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * 
+ * @package UserManagementSystem
+ * @since 1.0.0
+ */
