@@ -63,7 +63,23 @@ add_action('after_setup_theme', 'ums_theme_setup');
  */
 function ums_enqueue_assets()
 {
-    // Load the main stylesheet
-    wp_enqueue_style('ums-style', get_stylesheet_uri(), [], '1.0.0', 'all');
+    // Load compiled CSS
+    wp_enqueue_style('ums-main-style', get_template_directory_uri() . '/assets/css/main.css', [], '1.0.0', 'all');
+
+    // Load JS
+    wp_enqueue_script('ums-main-js', get_template_directory_uri() . '/assets/js/main.js', [], '1.0.0', true);
 }
 add_action('wp_enqueue_scripts', 'ums_enqueue_assets');
+
+/**
+ * Hide Admin Bar for Non-Administrators
+ *
+ * @package UserManagementSystem
+ * @since 1.0.0
+ */
+add_filter('show_admin_bar', function ($show) {
+    if (!current_user_can('administrator')) {
+        return false; // Oculta la barra para todos los usuarios excepto administradores
+    }
+    return $show; // Mantiene la barra para administradores
+});

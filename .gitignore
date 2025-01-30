@@ -53,3 +53,8 @@ wp-config-sample.php
 *.idea/
 Thumbs.db
 desktop.ini
+
+# ========================
+# Ignore Node.js dependencies
+# ========================
+node_modules/

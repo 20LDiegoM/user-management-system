@@ -1,0 +1,11 @@
+{
+    "name": "cool-kids-network",
+    "version": "1.0.0",
+    "devDependencies": {
+      "sass": "^1.49.9"
+    },
+    "scripts": {
+      "build-css": "sass --watch assets/scss/main.scss assets/css/main.css"
+    }
+  }
+  

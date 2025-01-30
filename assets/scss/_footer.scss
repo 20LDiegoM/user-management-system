@@ -1,0 +1,8 @@
+@use 'variables' as vars;
+
+.site-footer {
+    background: vars.$secondary-color;
+    color: vars.$white;
+    text-align: center;
+    padding: 15px 0;
+}

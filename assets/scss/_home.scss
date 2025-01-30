@@ -1,0 +1,115 @@
+@use 'variables' as vars;
+@use "sass:color";
+
+.homepage-content {
+    .success, .error {
+        margin-bottom: 30px;
+        padding: 7px 15px;
+    }
+
+    .alert {
+        opacity: 1;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    
+        &.hidden {
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+        }
+    }
+
+    .success {
+        background-color: vars.$success-color;
+        color: vars.$color-success-text;
+    }
+
+    .error {
+        background-color: vars.$error-color;
+        color: vars.$color-error-text;
+    }
+
+    .auth-buttons {
+        margin-bottom: 20px;
+        text-align: center;
+
+        button {
+            background-color: vars.$primary-color;
+            color: vars.$white;
+            border: none;
+            padding: 10px 20px;
+            font-size: vars.$font-size-base;
+            border-radius: vars.$border-radius;
+            cursor: pointer;
+            margin: 0 10px;
+            
+
+            &:hover {
+                background-color: color.adjust(vars.$primary-color, $lightness: -10%);
+            }
+
+            &.btn-secondary {
+                background-color: vars.$secondary-color;
+
+                &:hover {
+                    background-color: color.adjust(vars.$secondary-color, $lightness: -10%);
+                }
+            }
+        }
+    }
+
+    .auth-forms {
+        margin-top: 20px;
+        text-align: center;
+    
+        .form-container {
+            display: none;
+            background: vars.$background-light;
+            border: 1px solid vars.$border-color;
+            border-radius: vars.$border-radius;
+            padding: vars.$padding;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: vars.$box-shadow;
+    
+            h2 {
+                font-size: 24px;
+                margin-bottom: 15px;
+                color: vars.$text-color;
+            }
+    
+            label {
+                display: block;
+                text-align: left;
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: vars.$text-color;
+            }
+    
+            input {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 15px;
+                border: 1px solid vars.$border-color;
+                border-radius: vars.$border-radius;
+                font-size: 14px;
+            }
+    
+            button {
+                background-color: vars.$primary-color;
+                color: vars.$white;
+                border: none;
+                padding: 10px 20px;
+                font-size: vars.$font-size-base;
+                border-radius: vars.$border-radius;
+                cursor: pointer;
+    
+                &:hover {
+                    background-color: color.adjust(vars.$primary-color, $lightness: 10%);
+                }
+            }
+            &.active {
+                display: block;
+            }
+        }
+    }
+}

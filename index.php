@@ -12,7 +12,6 @@
  * @since 1.0.0
  */
 
-get_header();
 
 // Initialize messages for user feedback
 $success_message = '';
@@ -82,55 +81,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $error_message = esc_html__('Login failed. Please check your email and password.', 'cool-kids-network');
     }
 }
+get_header();
 ?>
 
 <main id="main-content">
-    <section class="homepage-hero">
-        <h1><?php esc_html_e('Welcome to the Cool Kids Network', 'cool-kids-network'); ?></h1>
+    <section class="homepage-content">
+        <h1 class="main-title"><?php esc_html_e('Welcome to the Cool Kids Network', 'cool-kids-network'); ?></h1>
 
         <?php if (is_user_logged_in()) : ?>
             <p>
                 <?php
                 printf(
                     esc_html__('Hello, %s! Explore your character\'s details in your profile.', 'cool-kids-network'),
-                    esc_html(wp_get_current_user()->display_name)
+                    esc_html(wp_get_current_user()->first_name)
                 );
                 ?>
             </p>
-            <a href="<?php echo esc_url(home_url('/profile/')); ?>" class="btn btn-primary">
-                <?php esc_html_e('Go to Profile', 'cool-kids-network'); ?>
-            </a>
-            <a href="<?php echo esc_url(wp_logout_url(home_url('/'))); ?>" class="btn btn-secondary">
-                <?php esc_html_e('Log Out', 'cool-kids-network'); ?>
-            </a>
         <?php else : ?>
 
             <!-- Display success or error messages -->
             <?php if (!empty($success_message)) : ?>
-                <p class="success"><?php echo esc_html($success_message); ?></p>
+                <p class="alert success"><?php echo esc_html($success_message); ?></p>
             <?php elseif (!empty($error_message)) : ?>
-                <p class="error"><?php echo esc_html($error_message); ?></p>
+                <p class="alert error"><?php echo esc_html($error_message); ?></p>
             <?php endif; ?>
 
-            <!-- Sign-Up Form -->
-            <h2><?php esc_html_e('Sign Up', 'cool-kids-network'); ?></h2>
-            <form method="POST" action="">
-                <input type="hidden" name="action" value="signup">
-                <label for="signup-email"><?php esc_html_e('Email Address', 'cool-kids-network'); ?></label>
-                <input type="email" id="signup-email" name="email" required>
-                <button type="submit" class="btn btn-primary"><?php esc_html_e('Sign Up', 'cool-kids-network'); ?></button>
-            </form>
+            <!-- Buttons to toggle between forms -->
+            <div class="auth-buttons">
+                <button id="show-signup" class="btn btn-primary"><?php esc_html_e('Sign Up', 'cool-kids-network'); ?></button>
+                <button id="show-login" class="btn btn-secondary"><?php esc_html_e('Log In', 'cool-kids-network'); ?></button>
+            </div>
 
-            <!-- Login Form -->
-            <h2><?php esc_html_e('Login', 'cool-kids-network'); ?></h2>
-            <form method="POST" action="">
-                <input type="hidden" name="action" value="login">
-                <label for="login-email"><?php esc_html_e('Email Address', 'cool-kids-network'); ?></label>
-                <input type="email" id="login-email" name="email" required>
-                <label for="login-password"><?php esc_html_e('Password', 'cool-kids-network'); ?></label>
-                <input type="password" id="login-password" name="password" placeholder="Default: 1q2w3e" required>
-                <button type="submit" class="btn btn-secondary"><?php esc_html_e('Log In', 'cool-kids-network'); ?></button>
-            </form>
+            <!-- Forms Container -->
+            <div class="auth-forms">
+                <!-- Sign-Up Form -->
+                <div id="signup-form" class="form-container">
+                    <h2><?php esc_html_e('Sign Up', 'cool-kids-network'); ?></h2>
+                    <form method="POST" action="">
+                        <input type="hidden" name="action" value="signup">
+                        <label for="signup-email"><?php esc_html_e('Email Address', 'cool-kids-network'); ?></label>
+                        <input type="email" id="signup-email" name="email" required>
+                        <button type="submit" class="btn btn-primary"><?php esc_html_e('Sign Up', 'cool-kids-network'); ?></button>
+                    </form>
+                </div>
+
+                <!-- Login Form -->
+                <div id="login-form" class="form-container">
+                    <h2><?php esc_html_e('Login', 'cool-kids-network'); ?></h2>
+                    <form method="POST" action="">
+                        <input type="hidden" name="action" value="login">
+                        <label for="login-email"><?php esc_html_e('Email Address', 'cool-kids-network'); ?></label>
+                        <input type="email" id="login-email" name="email" required>
+                        <label for="login-password"><?php esc_html_e('Password', 'cool-kids-network'); ?></label>
+                        <input type="password" id="login-password" name="password" placeholder="Default: 1q2w3e" required>
+                        <button type="submit" class="btn btn-secondary"><?php esc_html_e('Log In', 'cool-kids-network'); ?></button>
+                    </form>
+                </div>
+            </div>
+
+
         <?php endif; ?>
     </section>
 </main>
