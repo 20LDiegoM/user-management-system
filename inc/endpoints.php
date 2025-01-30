@@ -15,6 +15,9 @@
  *
  * @return void
  */
+
+// phpcs:ignoreFile WordPress.DB.SlowDBQuery.slow_query_meta_query
+
 function ck_register_change_role_endpoint() {
 	register_rest_route(
 		'ck/v1',
