@@ -7,11 +7,12 @@
  * @package UserManagementSystem
  * @since 1.0.0
  */
+
 ?>
 <footer class="site-footer">
-    <div class="container">
-        <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
-    </div>
+	<div class="container">
+		<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?>. All rights reserved.</p>
+	</div>
 </footer>
 <?php wp_footer(); ?>
 </body>

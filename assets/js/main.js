@@ -1,38 +1,60 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const signupForm = document.getElementById("signup-form");
-    const loginForm = document.getElementById("login-form");
-    const showSignup = document.getElementById("show-signup");
-    const showLogin = document.getElementById("show-login");
-    const alertBox = document.querySelector(".alert");
+/**
+ * Main JavaScript file for the user management system theme.
+ *
+ * This file contains JavaScript code to handle the frontend functionality
+ * of the user management system.
+ *
+ * @package UserManagementSystem
+ * @version 1.0.0
+ */
 
-    /**
-     * Handles toggling between the "Sign Up" and "Login" forms.
-     * Only executes if all the necessary elements are present.
-     */
-    if (showSignup && showLogin && signupForm && loginForm) {
-        // Show the "Sign Up" form and hide the "Login" form
-        showSignup.addEventListener("click", function () {
-            signupForm.classList.add("active");
-            loginForm.classList.remove("active");
-        });
+document.addEventListener(
+	"DOMContentLoaded",
+	function () {
+		const signupForm = document.getElementById( "signup-form" );
+		const loginForm  = document.getElementById( "login-form" );
+		const showSignup = document.getElementById( "show-signup" );
+		const showLogin  = document.getElementById( "show-login" );
+		const alertBox   = document.querySelector( ".alert" );
 
-        // Show the "Login" form and hide the "Sign Up" form
-        showLogin.addEventListener("click", function () {
-            loginForm.classList.add("active");
-            signupForm.classList.remove("active");
-        });
-    }
+		/**
+		 * Handles toggling between the "Sign Up" and "Login" forms.
+		 * Only executes if all the necessary elements are present.
+		 */
+		if (showSignup && showLogin && signupForm && loginForm) {
+			// Show the "Sign Up" form and hide the "Login" form.
+			showSignup.addEventListener(
+				"click",
+				function () {
+					signupForm.classList.add( "active" );
+					loginForm.classList.remove( "active" );
+				}
+			);
 
-    /**
-     * Handles dismissing the alert message when the user clicks on it.
-     * The alert message is hidden by adding the "hidden" class.
-     */
-    if (alertBox) {
-        alertBox.addEventListener('click', function (e) {
-            const target = e.currentTarget; // The element that triggered the event
+			// Show the "Login" form and hide the "Sign Up" form.
+			showLogin.addEventListener(
+				"click",
+				function () {
+					loginForm.classList.add( "active" );
+					signupForm.classList.remove( "active" );
+				}
+			);
+		}
 
-            // Add the "hidden" class to hide the alert
-            target.classList.add('hidden');
-        });
-    }
-});
+		/**
+		 * Handles dismissing the alert message when the user clicks on it.
+		 * The alert message is hidden by adding the "hidden" class.
+		 */
+		if (alertBox) {
+			alertBox.addEventListener(
+				'click',
+				function (e) {
+					const target = e.currentTarget; // The element that triggered the event.
+
+					// Add the "hidden" class to hide the alert.
+					target.classList.add( 'hidden' );
+				}
+			);
+		}
+	}
+);

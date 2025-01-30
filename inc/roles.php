@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Custom User Roles
  *
@@ -21,56 +20,71 @@
  *
  * @since 1.0.0
  */
-function ck_register_custom_roles()
-{
-    // "Cool Kid" role (Basic user with read access)
-    add_role(
-        'cool_kid',
-        __('Cool Kid', 'cool-kids-network'),
-        [
-            'read' => true, // Allows reading content
-        ]
-    );
+function ck_register_custom_roles_and_capabilities() {
+	// Add "Cool Kid" role.
+	add_role(
+		'cool_kid',
+		__( 'Cool Kid', 'cool-kids-network' ),
+		array(
+			'read' => true, // Allows reading content.
+		)
+	);
 
-    // "Cooler Kid" role (Can view other users' character names and countries)
-    add_role(
-        'cooler_kid',
-        __('Cooler Kid', 'cool-kids-network'),
-        [
-            'read' => true,
-            'view_other_characters' => true, // Custom capability
-        ]
-    );
+	// Add "Cooler Kid" role.
+	add_role(
+		'cooler_kid',
+		__( 'Cooler Kid', 'cool-kids-network' ),
+		array(
+			'read'                  => true,
+			'view_other_characters' => true, // Custom capability.
+		)
+	);
 
-    // "Coolest Kid" role (Can view all user details, including email and role)
-    add_role(
-        'coolest_kid',
-        __('Coolest Kid', 'cool-kids-network'),
-        [
-            'read' => true,
-            'view_other_characters' => true, // Custom capability
-            'view_other_emails_roles' => true, // Custom capability
-        ]
-    );
+	// Add "Coolest Kid" role.
+	add_role(
+		'coolest_kid',
+		__( 'Coolest Kid', 'cool-kids-network' ),
+		array(
+			'read'                    => true,
+			'view_other_characters'   => true, // Custom capability.
+			'view_other_emails_roles' => true, // Custom capability.
+		)
+	);
+
+	// Add custom capabilities to the "administrator" role.
+	$administrator = get_role( 'administrator' );
+	if ( $administrator ) {
+		$administrator->add_cap( 'view_other_characters' );
+		$administrator->add_cap( 'view_other_emails_roles' );
+	}
 }
-add_action('init', 'ck_register_custom_roles');
+add_action( 'init', 'ck_register_custom_roles_and_capabilities' );
 
 /**
- * Remove custom user roles.
+ * Remove custom user roles and capabilities.
  *
- * This function removes the custom roles when the theme or plugin is deactivated.
- * It ensures that no orphaned roles remain in the system.
+ * This function removes the custom roles and capabilities when the theme
+ * or plugin is deactivated.
  *
  * @since 1.0.0
  */
-function ck_remove_custom_roles()
-{
-    remove_role('cool_kid');
-    remove_role('cooler_kid');
-    remove_role('coolest_kid');
-}
+function ck_remove_custom_roles_and_capabilities() {
+	// Remove "Cool Kid" role.
+	remove_role( 'cool_kid' );
 
-// Ensure the function runs when the theme/plugin is deactivated
-if (function_exists('register_deactivation_hook')) {
-    register_deactivation_hook(__FILE__, 'ck_remove_custom_roles');
+	// Remove "Cooler Kid" role.
+	remove_role( 'cooler_kid' );
+
+	// Remove "Coolest Kid" role.
+	remove_role( 'coolest_kid' );
+
+	// Remove custom capabilities from "administrator" role.
+	$administrator = get_role( 'administrator' );
+	if ( $administrator ) {
+		$administrator->remove_cap( 'view_other_characters' );
+		$administrator->remove_cap( 'view_other_emails_roles' );
+	}
+}
+if ( function_exists( 'register_deactivation_hook' ) ) {
+	register_deactivation_hook( __FILE__, 'ck_remove_custom_roles_and_capabilities' );
 }

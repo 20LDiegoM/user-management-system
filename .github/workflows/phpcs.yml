@@ -1,0 +1,35 @@
+name: PHPCS Linter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  phpcs:
+    name: Run PHP_CodeSniffer
+    runs-on: ubuntu-latest
+
+    steps:
+      # Paso 1: Clonar el repositorio
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Paso 2: Configurar PHP
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1' # Cambia a la versión de PHP que necesites
+          tools: composer
+
+      # Paso 3: Instalar dependencias
+      - name: Install dependencies
+        run: composer install --no-progress --no-suggest
+
+      # Paso 4: Ejecutar PHPCS
+      - name: Run PHP_CodeSniffer
+        run: vendor/bin/phpcs --standard=phpcs.xml.dist .
+

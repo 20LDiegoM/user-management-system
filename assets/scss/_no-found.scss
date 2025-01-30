@@ -1,0 +1,49 @@
+@use 'variables' as vars;
+
+.error-404 {
+    text-align: center;
+    padding: 50px 20px;
+
+    .container {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    h1 {
+        font-size: 36px;
+        color: vars.$text-color;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 18px;
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .error-image img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    .error-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        
+        .btn-primary {
+            background-color: vars.$primary-color;
+            color: white;
+            padding: 10px 20px;
+            border-radius: vars.$border-radius;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+    }
+}
