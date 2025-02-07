@@ -14,22 +14,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Paso 1: Clonar el repositorio
+      # Step 1: Clone repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Paso 2: Configurar PHP
+      # Step 2: PHP settings
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.1' # Cambia a la versión de PHP que necesites
+          php-version: '8.1' # Change the php version
           tools: composer
 
-      # Paso 3: Instalar dependencias
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: composer install --no-progress --no-suggest
 
-      # Paso 4: Ejecutar PHPCS
+      # Step 4: Run PHP_CodeSniffer
       - name: Run PHP_CodeSniffer
         run: vendor/bin/phpcs --standard=WordPress --ignore=vendor/*,node_modules/* .
 

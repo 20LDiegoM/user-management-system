@@ -80,8 +80,8 @@ add_filter(
 	'show_admin_bar',
 	function ( $show ) {
 		if ( ! current_user_can( 'manage_options' ) ) {
-			return false; // Oculta la barra para todos los usuarios excepto administradores.
+			return false; // Hide the admin bar
 		}
-		return $show; // Mantiene la barra para administradores.
+		return $show; // Keep the admin bar for administrators
 	}
 );
